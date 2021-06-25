@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>GALA-EXPLORA</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"
+      integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="scss/style.css" />
+  </head>
+  <body style="background-image: url(images/bg1.jpeg)">
+    <section class="ftco-section img bg-hero">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6 text-center mb-5">
+            <h2 class="heading-section"><b>EXPLORA - </b>Task 4</h2>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-11">
+            <div class="wrapper">
+              <div class="row no-gutters justify-content-between">
+                <div class="col-lg-6 d-flex align-items-stretch">
+                  <div class="info-wrap w-100 p-5">
+                    <h3 class="mb-4">Clue For the Task</h3>
+                    <div class="dbox w-100 d-flex align-items-start">
+                      <div
+                        class="
+                          icon
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                      >
+                        <span class="fa fa-map-marker"></span>
+                      </div>
+                      <div class="text pl-4">
+                        <p>
+                          <span>28.53813, 77.18997</span> New Delhi<br />
+                          Acess Code : 1,723.91 km
+                        </p>
+                      </div>
+                    </div>
+                    <div class="dbox w-100 d-flex align-items-start">
+                      <div
+                        class="
+                          icon
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                      >
+                        <span class="fa fa-map-marker"></span>
+                      </div>
+                      <div class="text pl-4">
+                        <p>
+                          <span>8.54286, 76.86423</span> Trivandrum<br />Acess
+                          Code : 504.90 km
+                        </p>
+                      </div>
+                    </div>
+                    <div class="dbox w-100 d-flex align-items-start">
+                      <div
+                        class="
+                          icon
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                      >
+                        <span class="fa fa-map-marker"></span>
+                      </div>
+                      <div class="text pl-4">
+                        <p>
+                          <span>22.58302, 88.45750</span> Kolkata<br />Acess
+                          Code : 1,569.42 km
+                        </p>
+                      </div>
+                    </div>
+                    <!--  -->
+                  </div>
+                </div>
+                <div class="col-lg-5">
+                  <div class="contact-wrap w-100 p-md-5 p-4">
+                    <h3 class="mb-4">Fill out This for Next Code</h3>
+                    <div id="form-message-warning" class="mb-4"></div>
+                    <div id="form-message-success" class="mb-4">
+                      Your message was sent, thank you!
+                    </div>
+                    <div id="contactForm" name="contactForm">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              name="Value1"
+                              id="Value1"
+                              placeholder="Team Code"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              name="Value2"
+                              id="Value2"
+                              placeholder="Your Name"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <input
+                              type="text"
+                              class="form-control"
+                              name="Value3"
+                              id="Value3"
+                              placeholder="Answer"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <button
+                              type="submit"
+                              class="btn btn-primary"
+                              id="submitBtn"
+                            >
+                              Submit
+                            </button>
+                            <div class="submitting"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="lottieWraper" id="player">
+      <lottie-player
+        autoplay
+        loop
+        mode="normal"
+        class="lottiePlayer"
+        style="width: 400px; height: 400px"
+      >
+      </lottie-player>
+    </div>
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@0.4.0/dist/lottie-player.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#submitBtn").click(function () {
+          console.log("Data Send");
+          const value1 = document.getElementById("Value1").value;
+          const value2 = document.getElementById("Value2").value;
+          const value3 = document.getElementById("Value3").value;
+          $.post(
+            "https://maker.ifttt.com/trigger/tressureForm/with/key/h71ZM2Q4oan_-uO_DGI__PFZQ4bA76K8feqeYhqRqsF",
+            {
+              value1: value1,
+              value2: value2,
+              value3: value3,
+            },
+            function (data, status) {
+              console.log("Data Send");
+            }
+          );
+          let encrypted = false;
+          try {
+            encrypted = CryptoJS.AES.decrypt(
+              "U2FsdGVkX1+JpcYMLYQ1SfiHljgTdpoNynL0XsYNMD9c3IrBUw5mOQLjephODFSC9KEZHe7Zza4zRLSq8qzeMrOAP2TMs2D6mAqQFGKVPu889nBkGIY2p3xoIlhWyKsnE6AzvEgYNS43dZNT3ziXH3ItZ73nl8ZTYOC+YXCSabSpbJlVOXLeaegoqUm30p11+HuOv5CwDjmXVahzq5EB3Y0XLw/EVtwZCd5kpfRXe3jvVU2YR1LFH9Y8hkAi6VS0KQxvUFCfckCo8jrxRzGM3OYuGwwjnCYqC+qu3YoP4whc4urEuwrX0zLcGpSUxot3sgHcrvN/eDawl56H7MHfq/9CT4Z/gBM+msga9x8OKL8/mc92xWkrJ3vTLllkWhb/WUXM7yiU9nS+vn1VTz2DZhrGeoo79KHEskG7Hjupuw9wIZq2JV/mHr83HekcRA+N6wQZHRJD4JCkc3jVJ9guVx6OBeT9Z33wqzQxZq1nNLiUd1UP14c/9JRXzTVlYXi6SqrYa6qSXCQzVO12eWrspmbwZhXsIBu5DXKI154SyVnepIMVUcMftSbYBaH0/wda63ISxEF5jcUc3PH9xz5RWJc1MOY055QvXBxLU9xSfHgCzK3BD0CUQS3X/joziHJcNbIiVQY1U5ihGKDB8SCj/fAkobDhLvXXK6eyybxzhNV5gSEDWFPpApzRjp69amwkGUNdhbaD2yBhl6/V6jZHh3A3+Kj+l7kyVE3l2yJo00Y0Y+YeURQE/gDSM/BI+pbiuEAe4xB+ZQPKp6Dyfo2Ycs267j4sLKOqhvNe0QQue/wDHqNVY5y0PXYUEQjuV3AwHUGm07hbNeAfCwryCVdIh6MA1I1PxM+80E7ThFgD4tebjXR2hYGKvW0M8kgpxbuZ",
+              value3.toUpperCase()
+            ).toString(CryptoJS.enc.Utf8);
+          } catch (error) {}
+
+          console.log(`object`, encrypted);
+          if (encrypted) {
+            alert(encrypted);
+            $("#player").addClass("true");
+            const player = document.querySelector("lottie-player");
+            player.load(
+              "https://assets4.lottiefiles.com/datafiles/Tj3Hd1X74Once2j/data.json"
+            );
+          } else {
+            $("#player").addClass("true");
+            const player = document.querySelector("lottie-player");
+            player.load(
+              "https://assets3.lottiefiles.com/private_files/lf30_no5ymi8c.json"
+            );
+          }
+        });
+      });
+    </script>
+
+    <!--
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/main.js"></script> -->
+  </body>
+</html>
